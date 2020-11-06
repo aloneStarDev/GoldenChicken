@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - جوجه طلایی</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", false)
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+</head>
+<body>
+    @if (TempData["msg"] != null)
+    {
+        @Html.Partial("Notification")
+    }
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand">جوجه طلایی</a>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="/Account/Login">
+                            ورود
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                    </li>
+                    @*
+                    <li class="nav-item">
+                       <a class="nav-link text-center" href="/Account/Register">
+                            ثبت نام
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </li>
+                    *@
+                }
+                else
+                {
+                    <li class="nav-item dropdown" id="admin-menu">
+                        <a class="nav-link text-center @(User.IsInRole("Master") ? "dropdown-toggle":"")" data-toggle="dropdown" href="#">
+                            پنل کاربری
+                            <i class="fas fa-user-alt"></i>
+                        </a>
+                        @if (User.IsInRole("Master"))
+                        {
+                            <div class="dropdown-menu mt-0 bg-none" id="admin-menu-collapse">
+                                @Html.ActionLink("گالری","Index","Admin",null,new { @class= "dropdown-item bg-primary text-center" })
+                                @Html.ActionLink("منو","Menu","Admin", null, new { @class= "dropdown-item bg-primary text-center" })
+                                @Html.ActionLink("درباره ما","Index","Account", null, new { @class= "dropdown-item bg-primary text-center" })
+                                @Html.ActionLink("ویرایش آدرس","Index","Account", null, new { @class= "dropdown-item bg-primary text-center" })
+                                @Html.ActionLink("آدرس","Index","Account", null, new { @class= "dropdown-item bg-primary text-center" })
+                            </div>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logout" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="nav-link text-center" href="#" onclick="$('#logout').submit()">
+                                خروج
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        }
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("درباره ما", "Index", "Home", new { @class = "nav-link text-center" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("ارتباط با ما", "Index", "Home", new { @class = "nav-link text-center" })
+                </li>
+                <li class="nav-item">
+
+                    @Html.ActionLink("گالری", "Index", "Home", new { @class = "nav-link text-center" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("منوی ها", "Index", "Home", new { @class = "nav-link text-center" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("لوگو","Index","Home",new { @class= "nav-link text-center" })
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <header>
+    </header>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - جوجه طلایی</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Site.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

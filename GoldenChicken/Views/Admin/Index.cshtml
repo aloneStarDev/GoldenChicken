@@ -1,0 +1,89 @@
+﻿@model GoldenChicken.Models.Media
+
+<h2 class="text-center">گالری</h2>
+
+<div class="container-fluid" id="Gallery">
+    <div class="modal fade bd-example-modal-lg" id="uploadFormModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">آپلود - {{mediaType == 1 ? "تصویر" : mediaType == 2 ? "ویدئو" : ""}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("UploadMedia", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "w-100" }))
+                {
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="cursor:pointer;">
+                                <button class="input-group-text" id="inputGroupFileAddon01" type="submit">ارسال</button>
+                            </div>
+                            <div class="custom-file" v-bind:title="mediaType==1 ? 'png یا jpg' : mediaType==2 ? 'mp4 فقط':''">
+                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01" v-bind:accept="mediaType==1 ? 'image/jpeg,image/png,image/jpg' : mediaType==2 ? 'video/mp4,video/*':''">
+                                <label class="custom-file-label" for="inputGroupFile01">انتخاب فایل</label>
+                            </div>
+                            @Html.ValidationMessage("image", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <br />
+                        <input type="hidden" v-model="mediaType" name="Type" />
+                        <div class="form-group w-100">
+                            <input name="Link" class="input-group" placeholder="لینک" />
+                        </div>
+                        <div class="form-group w-100">
+                            <input name="Caption" class="input-group" placeholder="کپشن" />
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="btn-group">
+            <button v-on:click="mediaType = 1" data-target="#uploadFormModal" data-toggle="modal" class="btn btn-sm btn-secondary">بارگزاری تصویر</button>
+            <button v-on:click="mediaType = 2" data-target="#uploadFormModal" data-toggle="modal" class="btn btn-sm btn-primary">بارگزاری ویدئو</button>
+        </div>
+    </div>
+    <hr />
+    <div class="container-fluid">
+        <div class="row">
+            <div v-for="(item,index) in items" class="mb-2 col-lg-4 card overflow-auto border-dark">
+                <div class="card-header">
+                    <img v-if="item.type === 0" v-bind:src="item.Path" class="card-img" />
+                    <video v-else-if="item.type === 1" class="card-img" controls>
+                        <source v-bind:src="item.Path" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h5 class="text-right">کپشن</h5>
+                        <p class="text-justify">{{item.Caption}}</p>
+                        <hr />
+                        <h5 class="text-right">لینک</h5>
+                        <p class="text-justify">{{item.Link}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        @Html.ActionLink("حذف", "")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script src="~/Scripts/Admin.js">
+    </script>
+}

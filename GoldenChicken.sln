@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldenChicken", "GoldenChicken\GoldenChicken.csproj", "{98D5C546-48BA-4E38-A2DE-08054C074469}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldenChicken.Tests", "GoldenChicken.Tests\GoldenChicken.Tests.csproj", "{281CC76A-4055-4667-A0EA-FDE367B254B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98D5C546-48BA-4E38-A2DE-08054C074469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D5C546-48BA-4E38-A2DE-08054C074469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D5C546-48BA-4E38-A2DE-08054C074469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D5C546-48BA-4E38-A2DE-08054C074469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281CC76A-4055-4667-A0EA-FDE367B254B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281CC76A-4055-4667-A0EA-FDE367B254B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281CC76A-4055-4667-A0EA-FDE367B254B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281CC76A-4055-4667-A0EA-FDE367B254B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAC782F8-F9F7-4560-B981-DDEC4E5357A8}
+	EndGlobalSection
+EndGlobal

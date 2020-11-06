@@ -1,0 +1,62 @@
+﻿@using GoldenChicken.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "ورود کاربران";
+}
+
+<h2 class="text-right">@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4 class="text-center">از حساب محلی خود برای ورود استفاده کنید</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Username, new { @class = "control-label col-md-2 float-right" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control m-auto" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2 float-right" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control m-auto" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ورود" class="btn btn-success" />
+                    </div>
+                </div>
+                <p class="float-right mr-5">
+                    @Html.ActionLink("ثبت نام", "Register")
+                </p>
+                <p>
+                    @Html.ActionLink("گذرواژه خود را فراموش کردم", "ForgotPassword")
+                </p>
+            }
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

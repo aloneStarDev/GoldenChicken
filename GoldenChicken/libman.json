@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.5.1",
+      "destination": "Scripts/",
+      "files": [
+        "jquery.min.js",
+        "jquery.js"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "Scripts/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "jquery.validate.js"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@4.5.3",
+      "destination": "Content/",
+      "files": [
+        "css/bootstrap-grid.css",
+        "css/bootstrap-grid.css.map",
+        "css/bootstrap-grid.min.css",
+        "css/bootstrap-reboot.css",
+        "css/bootstrap-reboot.min.css",
+        "css/bootstrap.css",
+        "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "font-awesome@5.15.1",
+      "destination": "Content/",
+      "files": [
+        "css/all.min.css",
+        "css/all.css",
+        "css/fontawesome.css",
+        "css/fontawesome.min.css",
+        "css/solid.css",
+        "css/solid.min.css"
+      ]
+    },
+    {
+      "library": "react@17.0.1",
+      "destination": "Scripts/react/"
+    }
+  ]
+}
